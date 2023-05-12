@@ -1,36 +1,53 @@
 import "./App.css";
+import { Link, Outlet } from "react-router-dom";
 
-const moutain_data = [
-  { name: "Freel", elevation: 10891 },
-  { name: "Monument", elevation: 10067 },
-  { name: "Pyramid", elevation: 9983 },
-  { name: "Tallac", elevation: 9735 },
-];
-
-function List({ data, renderItem, renderEmpty }) {
-  return !data.length ? (
-    renderEmpty
-  ) : (
-    <ul>
-      {data.map((item) => (
-        <li key={data.name}>{renderItem(item)}</li>
-      ))}
-    </ul>
-  );
-}
-
-function App() {
+function Home() {
   return (
-    <List
-      data={moutain_data}
-      renderEmpty={<p> The data is empty</p>}
-      renderItem={(item) => (
-        <>
-          {item.name} - {item.elevation}ft.
-        </>
-      )}
-    />
+    <div>
+      <nav>
+        <Link to="/aboutus">AboutUs</Link>
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <h1> My Website</h1>
+    </div>
   );
 }
 
-export default App;
+export function AboutUs() {
+  return (
+    <div>
+      <nav>
+        <Link to="/">HomePage</Link>
+        <Link to="/aboutus">AboutUs</Link>
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <h1>About Us</h1>
+      <Outlet />
+    </div>
+  );
+}
+
+export function OurHistory() {
+  return (
+    <div>
+      <h1>Our History</h1>
+    </div>
+  );
+}
+
+export function Contact() {
+  return (
+    <div>
+      <nav>
+        <Link to="/">HomePage</Link>
+        <Link to="/aboutus">AboutUs</Link>
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <h1>Contact</h1>
+    </div>
+  );
+}
+
+export function App() {
+  return <Home />;
+}
